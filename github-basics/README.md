@@ -14,9 +14,7 @@ Table of Contents
 # Quick Start: To Branch or to Fork? That is the question
 
 
-This guide provides essential steps for working on a GitHub repository, whether you’re a lab member, a direct collaborator or working on your own fork.
-The .pdf file on this repository, contains a more detailed guide. Below you'll find a few common scenarios and recommendations.
-
+This guide provides essential steps for working on a GitHub repository, whether you’re a lab member, a direct collaborator or working on your own fork. 
 
 ## 1. Minimal Customization Needed
 

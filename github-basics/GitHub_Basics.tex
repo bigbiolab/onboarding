@@ -1,0 +1,847 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+% load packages
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{eso-pic}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{fontspec}
+\usepackage{titlesec}
+
+%% Set page size with a wider right margin
+\geometry{a4paper, total={170mm,257mm}, left=20mm, top=20mm, bottom=20mm, right=50mm}
+
+%% Let's define some colours
+\definecolor{light}{HTML}{E6E6FA}
+\definecolor{highlight}{HTML}{800080}
+\definecolor{dark}{HTML}{330033}
+
+%% Let's add the border on the right hand side 
+\AddToShipoutPicture{% 
+    \AtPageLowerLeft{% 
+        \put(\LenToUnit{\dimexpr\paperwidth-3cm},0){% 
+            \color{light}\rule{3cm}{\LenToUnit\paperheight}%
+          }%
+     }%
+     % logo
+    \AtPageLowerLeft{% start the bar at the bottom right of the page
+        \put(\LenToUnit{\dimexpr\paperwidth-2.25cm},27.2cm){% move it to the top right
+            \color{light}\includegraphics[width=1.5cm]{_extensions/nrennie/PrettyPDF/logo.png}
+          }%
+     }%
+}
+
+%% Style the page number
+\fancypagestyle{mystyle}{
+  \fancyhf{}
+  \renewcommand\headrulewidth{0pt}
+  \fancyfoot[R]{\thepage}
+  \fancyfootoffset{3.5cm}
+}
+\setlength{\footskip}{20pt}
+
+%% style the chapter/section fonts
+\chapterfont{\color{dark}\fontsize{20}{16.8}\selectfont}
+\sectionfont{\color{dark}\fontsize{20}{16.8}\selectfont}
+\subsectionfont{\color{dark}\fontsize{14}{16.8}\selectfont}
+\titleformat{\subsection}
+  {\sffamily\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+  
+% left align title
+\makeatletter
+\renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
+\begin{flushleft}
+  {\sffamily\huge\textbf{\MakeUppercase{\@title}}} \vspace{0.3cm} \newline
+  {\Large {\@subtitle}} \newline
+  \@author
+\end{flushleft}\egroup
+}
+\makeatother
+
+%% Use some custom fonts
+\setsansfont{Ubuntu}[
+    Path=_extensions/nrennie/PrettyPDF/Ubuntu/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    ]
+
+\setmainfont{Ubuntu}[
+    Path=_extensions/nrennie/PrettyPDF/Ubuntu/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    ]
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}{}
+\makeatother
+\makeatletter
+\@ifundefined{codebgcolor}{\definecolor{codebgcolor}{named}{light}}{}
+\makeatother
+\makeatletter
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, boxrule=0pt, enhanced, colback={codebgcolor}, sharp corners, breakable]}{\end{tcolorbox}}\fi
+\makeatother
+
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={GitHub Basics},
+  pdfauthor={Md. Jubayer Hossain},
+  colorlinks=true,
+  linkcolor={highlight},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={highlight},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{GitHub Basics}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{A guide to get you started on GitHub}
+\author{Md. Jubayer Hossain}
+\date{}
+
+\begin{document}
+\maketitle
+
+\pagestyle{mystyle}
+
+
+\subsection{1. Terminology}\label{terminology}
+
+\subsubsection{1.1 Fork}\label{fork}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{What it means}: A fork is your own personal copy of someone
+  else's repository. You can freely make changes to your forked copy
+  without affecting the original repository.
+\item
+  \textbf{When to fork}: You fork a repository if you want to develop
+  your own version or if you are \emph{not} a direct collaborator on the
+  main repository but want to propose changes via Pull Requests.
+\end{itemize}
+
+\subsubsection{1.2 Clone}\label{clone}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{What it means}: Cloning a repository means creating a local
+  copy of it on your computer so you can view, edit, and manage the code
+  offline.
+\item
+  \textbf{When to clone}: You clone a repository if you have permission
+  to push code directly to it (e.g., you're a collaborator) or if you
+  have forked it and want to work on your own copy locally.
+\end{itemize}
+
+\subsubsection{1.3 Commit}\label{commit}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{What it means}: A commit is a snapshot of your changes,
+  recording what changed in the code and (ideally) why.
+\item
+  \textbf{When to commit}: Commit often---whenever you have made a
+  logical unit of change or have reached a stable state. Each commit
+  should be accompanied by a clear message describing what changed.
+\end{itemize}
+
+\subsubsection{1.4 Push}\label{push}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{What it means}: ``Push'' sends your local commits to a remote
+  repository (on GitHub).
+\item
+  \textbf{When to push}: Push after you have made a series of commits
+  (or at least one) that you want to share or back up on GitHub.
+\end{itemize}
+
+\subsubsection{1.5 Pull}\label{pull}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{What it means}: ``Pull'' fetches any changes from the remote
+  repository and merges them into your local copy.
+\item
+  \textbf{When to pull}: Pull before you start working and frequently
+  while you work, to ensure your local copy is up to date with other
+  collaborators' changes.
+\end{itemize}
+
+\subsubsection{1.6 Branch}\label{branch}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{What it means}: A branch is an isolated line of development.
+  The default branch is usually called \texttt{main} (or historically
+  \texttt{master}).
+\item
+  \textbf{When to branch}: Use branches to develop features, fix bugs,
+  or experiment without disturbing the main codebase.
+\end{itemize}
+
+\subsubsection{1.7 Merge \& Pull Requests
+(PRs)}\label{merge-pull-requests-prs}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Merge}: Combines changes from one branch to another.
+\item
+  \textbf{Pull Request (PR)}: A GitHub-based mechanism to propose
+  changes from one branch (or fork) to the main repository.
+\end{itemize}
+
+\subsection{2. Setting up your
+environment}\label{setting-up-your-environment}
+
+\subsubsection{2.1 Install Git}\label{install-git}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  If you don't already have Git installed,
+  \href{https://git-scm.com/downloads}{download and install Git}.
+\item
+  Configure Git with your username and email (in the \textbf{terminal},
+  e.g., Command Prompt, Bash, or PowerShell):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ config }\AttributeTok{{-}{-}global}\NormalTok{ user.name }\StringTok{"Your Name"}
+\FunctionTok{git}\NormalTok{ config }\AttributeTok{{-}{-}global}\NormalTok{ user.email }\StringTok{"you@example.com"}
+\end{Highlighting}
+\end{Shaded}
+
+  Make sure the email matches the one you use for GitHub.
+\end{enumerate}
+
+\subsubsection{2.2 RStudio and Git
+Integration}\label{rstudio-and-git-integration}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In RStudio, go to \textbf{Tools} \textgreater{} \textbf{Global
+  Options} \textgreater{} \textbf{Git/SVN}.
+\item
+  Check that RStudio detects Git. If not, point RStudio to the path
+  where Git is installed.
+\end{enumerate}
+
+\subsubsection{2.3 renv basics}\label{renv-basics}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{What it is}: The \textbf{\{renv\}} R package helps you create
+  isolated project environments with specific package versions. This
+  ensures reproducibility across different machines and collaborators.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  To install \textbf{\{renv\}} in a new R session:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"renv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  (Optional) If you're creating a new project, initialize \textbf{renv}
+  within that project:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{init}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+  This will create a \texttt{renv} folder and a \texttt{renv.lock} file
+  that tracks packages used in the project.
+\item
+  If you are \emph{cloning or forking an existing repository} that
+  already uses \textbf{\{renv\}}, once you open the project in RStudio,
+  run:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{restore}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+  to install the required packages matching the versions specified in
+  \texttt{renv.lock}.
+\end{enumerate}
+
+\subsection{3. Working with a repository as a
+collaborator}\label{working-with-a-repository-as-a-collaborator}
+
+If you are officially added as a collaborator on a GitHub repo (meaning
+you have permission to push changes directly), follow these steps:
+
+\subsubsection{3.1 Clone the repository}\label{clone-the-repository}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Open the repository on GitHub in your web browser.\\
+\item
+  Click the green ``Code'' button and copy the HTTPS URL (e.g.,
+  \texttt{https://github.com/username/repo.git}).
+\item
+  In \textbf{RStudio}, go to \textbf{File} \textgreater{} \textbf{New
+  Project} \textgreater{} \textbf{Version Control} \textgreater{}
+  \textbf{Git}.\\
+\item
+  Paste the repository URL, select a local directory to place the
+  project, and click ``Create Project''.
+
+  \begin{itemize}
+  \item
+    \emph{Alternatively}, clone via the \textbf{terminal}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ clone https://github.com/username/repo.git}
+\end{Highlighting}
+\end{Shaded}
+  \item
+    Once cloned, open the \texttt{.Rproj} file in RStudio if the project
+    includes one.
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{3.2 Set up renv (if the repo uses
+renv)}\label{set-up-renv-if-the-repo-uses-renv}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  In the RStudio \textbf{Console}, run:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{restore}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+  This installs all the packages needed as specified by the project's
+  \texttt{renv.lock} file.
+\end{enumerate}
+
+\subsubsection{3.3 Pull the latest
+changes}\label{pull-the-latest-changes}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In RStudio, click the \textbf{Git} tab (usually in the upper-right
+  pane or as a separate pane).\\
+\item
+  Click \textbf{Pull}.
+
+  \begin{itemize}
+  \item
+    \emph{Alternatively}, in the \textbf{terminal}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ pull}
+\end{Highlighting}
+\end{Shaded}
+
+    This ensures your local copy is in sync with the remote repository.
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{3.4 Create a branch or work on
+main}\label{create-a-branch-or-work-on-main}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Create a new branch} (recommended for new features or fixes):
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    In RStudio, under the \textbf{Git} tab, click on \textbf{Branches}
+    \textgreater{} \textbf{New Branch}, and give it a name.
+
+    \begin{itemize}
+    \item
+      \emph{Alternatively}, from the terminal:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ checkout }\AttributeTok{{-}b}\NormalTok{ my{-}feature{-}branch}
+\end{Highlighting}
+\end{Shaded}
+    \end{itemize}
+  \end{enumerate}
+\item
+  \textbf{Or} work on the \texttt{main} branch (less recommended if
+  you're working in a team, but sometimes used for direct small fixes).
+\end{itemize}
+
+\subsubsection{3.5 Make changes and
+commit}\label{make-changes-and-commit}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Modify your files in RStudio.\\
+\item
+  Check the \textbf{Git} pane in RStudio to see changed files.\\
+\item
+  Stage the changes by checking the boxes next to the files you want to
+  commit.\\
+\item
+  Click \textbf{Commit}.\\
+\item
+  Enter a meaningful commit message.\\
+\item
+  Click \textbf{Commit} again to finalize.
+\end{enumerate}
+
+\subsubsection{3.6 Push to GitHub}\label{push-to-github}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Click the \textbf{Push} button in RStudio's Git pane.
+
+  \begin{itemize}
+  \item
+    \emph{Alternatively}, from the terminal:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ push origin my{-}feature{-}branch}
+\end{Highlighting}
+\end{Shaded}
+  \end{itemize}
+\item
+  This will update the remote repository on GitHub with your commits.
+\end{enumerate}
+
+\subsubsection{3.7 Create a Pull Request (if your branch is ready to
+merge)}\label{create-a-pull-request-if-your-branch-is-ready-to-merge}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Go to the repository page on GitHub.\\
+\item
+  You'll see a banner prompting you to ``Compare \& pull request'' for
+  your recently pushed branch. Click it.\\
+\item
+  Fill in the PR details (title, description) and submit.\\
+\item
+  Your collaborators can review and merge your changes.
+\end{enumerate}
+
+\subsection{4. Working with a repository as a
+fork}\label{working-with-a-repository-as-a-fork}
+
+If you are \emph{not} an official collaborator or you prefer to keep
+your own copy for separate development, you can \textbf{fork} the
+repository:
+
+\subsubsection{4.1 Fork the repository on
+GitHub}\label{fork-the-repository-on-github}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Open the repository you want to fork in your web browser.\\
+\item
+  Click the \textbf{Fork} button (top-right corner of the page).\\
+\item
+  Choose your GitHub account as the destination.\\
+\item
+  GitHub creates a copy (fork) of the repository in your account.
+\end{enumerate}
+
+\subsubsection{4.2 Clone your fork}\label{clone-your-fork}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Go to \textbf{your} forked repository (e.g.,
+  \texttt{https://github.com/your-username/repo.git}).\\
+\item
+  Click the green ``Code'' button and copy the URL.\\
+\item
+  \textbf{Clone} in the same way as above (either through RStudio's
+  ``File \textgreater{} New Project \textgreater{} Version Control
+  \textgreater{} Git'' or via the terminal):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ clone https://github.com/your{-}username/repo.git}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+\subsubsection{4.3 Set up renv (if
+applicable)}\label{set-up-renv-if-applicable}
+
+\begin{itemize}
+\item
+  Inside your forked repository in RStudio, run:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{restore}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+  to synchronize the packages.
+\end{itemize}
+
+\subsubsection{4.4 Syncing with the original
+repository}\label{syncing-with-the-original-repository}
+
+If the original repository (often called ``upstream'') has updates, you
+can pull those updates into your fork. First, set the upstream remote
+link:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# From inside your local forked repo}
+\FunctionTok{git}\NormalTok{ remote add upstream https://github.com/original{-}owner/repo.git}
+\end{Highlighting}
+\end{Shaded}
+
+Then, whenever the original repo changes, you can do:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ pull upstream main}
+\end{Highlighting}
+\end{Shaded}
+
+(This fetches and merges the latest changes from the original repo into
+your local fork.)
+
+\subsubsection{4.5 Commit and push changes to your
+fork}\label{commit-and-push-changes-to-your-fork}
+
+\begin{itemize}
+\item
+  Commit and push works similarly:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ add .}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Your commit message"}
+\FunctionTok{git}\NormalTok{ push origin main}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Or through RStudio's Git pane with \textbf{Commit} and \textbf{Push}.
+\end{itemize}
+
+\subsubsection{4.6 Open a Pull Request from your fork to the original
+repo (if you want to contribute
+back)}\label{open-a-pull-request-from-your-fork-to-the-original-repo-if-you-want-to-contribute-back}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Go to your fork on GitHub.\\
+\item
+  Click ``Contribute'' \textgreater{} ``Open pull request'' or ``Compare
+  \& pull request''.\\
+\item
+  Choose your fork's branch as ``head'' and the original repo's
+  \texttt{main} branch as ``base''.\\
+\item
+  Submit your Pull Request.
+\end{enumerate}
+
+\subsection{5. Good Practices}\label{good-practices}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Pull often}: Before starting new work, make sure you have the
+  latest changes from your collaborators.\\
+\item
+  \textbf{Meaningful commit messages}: Write short but descriptive
+  messages, e.g., \emph{``Fix bug in data loading function.''}\\
+\item
+  \textbf{Use branches}: Keep the main branch stable. Use feature
+  branches for new work.\\
+\item
+  \textbf{RStudio Projects}: Always open the \texttt{.Rproj} file so
+  that your environment is correctly set up.\\
+\item
+  \textbf{renv}: Keep \texttt{renv.lock} updated if you install or
+  update packages:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{snapshot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+  This ensures other collaborators know about and can install the new
+  package versions.
+\end{enumerate}
+
+\subsubsection{Summary}\label{summary}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Fork} if you want your own copy and don't have collaborator
+  push rights.\\
+\item
+  \textbf{Clone} either the main repo (if you're a collaborator) or your
+  fork.\\
+\item
+  \textbf{Commit} local changes frequently with good messages.\\
+\item
+  \textbf{Push} them to GitHub to back up or share your work.\\
+\item
+  \textbf{Pull} updates from GitHub to stay in sync with others'
+  changes.\\
+\item
+  \textbf{Use branches} for separate lines of development.\\
+\item
+  \textbf{Use renv} to manage R package dependencies and ensure
+  reproducibility.
+\end{itemize}
+
+With these steps in place, you'll be well prepared to contribute to a
+GitHub repository collaboratively or maintain your own forked project
+with best practices for version control and environment management.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Reference}
+
+Text prompt: ``Please write stepwise clear instructions about how to
+start working on a GitHub repo\ldots{}''
+
+Response by ChatGPT: (2025, January 2). ChatGPT response to the prompt
+``Please write stepwise clear instructions about how to start working on
+a GitHub repo\ldots{}'' {[}Large language model output{]}. OpenAI.
+https://chat.openai.com/
+
+
+
+
+\end{document}

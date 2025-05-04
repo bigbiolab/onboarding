@@ -1,6 +1,6 @@
 # BigBio Lab Onboarding Repository 
 
-This repository contains the onboarding information for CHIRAL Bangladesh. See onboarding.md for detailed onboarding guidelines.
+This repository contains the onboarding information for Big Bioinformatics Lab.
 
 - [Lab Guidelines](/lab-guidelines/README.md): This document outlines the expectations for lab members, including communication, meetings, and work-life balance.
 - [Good Practices](/good-practicies/README.md): This document provides best practices for lab members, including coding standards, documentation, and version control.

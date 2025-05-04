@@ -1,3 +1,15 @@
+Table of Contents
+---
+- [Quick Start: To Branch or to Fork? That is the question](#quick-start-to-branch-or-to-fork-that-is-the-question)
+  - [1. Minimal Customization Needed](#1-minimal-customization-needed)
+    - [Main Branch or “Template” Folder](#main-branch-or-template-folder)
+  - [2. Each Member Customizes and Shares Changes](#2-each-member-customizes-and-shares-changes)
+    - [Option A: Branches in One Repo](#option-a-branches-in-one-repo)
+    - [Option B: Forks](#option-b-forks)
+  - [3. Template-Only Repository](#3-template-only-repository)
+  - [Typical Recommendation](#typical-recommendation)
+  - [Key Concepts](#key-concepts)
+
 
 # Quick Start: To Branch or to Fork? That is the question
 
@@ -82,6 +94,8 @@ Choose the method that best fits your lab’s workflow, collaboration style, and
 - **Pull**: Update your local copy with remote changes.  
 - **Branch**: An isolated line of development. Use branches for new features or fixes.  
 - **Pull Request (PR)**: Propose merging your branch/fork changes into the main repo.
-
-**Image Credits**
-- Scientist cartoon: *Generated with the assistance of [ChatGPT](https://chat.openai.com), on January 3, 2025.*
+- **Merge**: Combine changes from one branch into another.
+- **Upstream**: The original repository you forked from.
+- **Origin**: Your personal copy of the repository (your fork).
+- **Remote**: A version of your repository hosted on GitHub.
+- **Main Branch**: The default branch in a repository (often called `main` or `master`).

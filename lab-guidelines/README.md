@@ -1,3 +1,35 @@
+Table of Contents
+---
+- [Mission Statement](#mission-statement)
+  - [Expectations](#expectations)
+- [Communication](#communication)
+  - [General](#general)
+    - [Meetings](#meetings)
+      - [Scrum](#scrum)
+    - [Research Meeting](#research-meeting)
+  - [Meeting Agenda](#meeting-agenda)
+    - [Meeting Formats](#meeting-formats)
+      - [Format 1: Braintrust](#format-1-braintrust)
+      - [Format 2: Tech Talk/Discussion](#format-2-tech-talkdiscussion)
+      - [Format 3: Post-Conference Presentations](#format-3-post-conference-presentations)
+      - [Format 4: Big Ideas or Projects](#format-4-big-ideas-or-projects)
+      - [Format 5: Journal Club](#format-5-journal-club)
+      - [Format 6: Preprint Review](#format-6-preprint-review)
+  - [Meeting Lead](#meeting-lead)
+  - [Ad-Hoc Meetings](#ad-hoc-meetings)
+- [Source Code, Data, and Reproducibility](#source-code-data-and-reproducibility)
+  - [Pride](#pride)
+  - [Programming Languages](#programming-languages)
+  - [Licensing](#licensing)
+  - [Version Control and GitHub Usage](#version-control-and-github-usage)
+    - [Creating a CHIRAL Repository](#creating-a-chiral-repository)
+    - [Code Review Process](#code-review-process)
+    - [Handling Projects That Didn't Work](#handling-projects-that-didnt-work)
+  - [Non-Code Versioning](#non-code-versioning)
+  - [Data Management](#data-management)
+  - [Reproducibility](#reproducibility)
+  - [How to Modify this Document](#how-to-modify-this-document)
+
 # Mission Statement
 
 The mission of CHIRAL Bangladesh is to advance scientific research and education in public health, bioinformatics, geospatial health and health data science by fostering interdisciplinary collaboration, supporting underprivileged students, and promoting impactful research that addresses critical health challenges in Bangladesh and beyond.

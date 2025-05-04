@@ -56,7 +56,7 @@ In addition, please don't hesitate to raise any questions or concerns that you h
 ## General
 **Slack:** CHIRAL Bangladesh operates remotely and uses Slack for internal communication. Members should prioritize Slack messages over emails for faster response times. If an email is necessary, please ensure it is also acknowledged in Slack. All members should join the following channels: `#general`, `#meeting`, and `#random`. 
 
-**Social Media:** CHIRAL members are encouraged to share research and updates via public social media. If a member associates their profile with CHIRAL Bangladesh, they must adhere to the CHIRAL’s code of conduct. If required by an employer or collaborator, members should include a disclaimer stating that opinions are personal and do not represent CHIRAL Bangladesh. Please read [Social Media Policies for CHIRAL Bangladesh](https://github.com/chiralbd/onboarding/blob/main/social-media-policies.md). 
+**Social Media:** CHIRAL members are encouraged to share research and updates via public social media. If a member associates their profile with CHIRAL Bangladesh, they must adhere to the CHIRAL’s code of conduct. If required by an employer or collaborator, members should include a disclaimer stating that opinions are personal and do not represent CHIRAL Bangladesh. Please read [Social Media Policies for CHIRAL Bangladesh](/lab-guidelines/social-media-policies.md). 
 
 **IP/Openness:** Intellectual property and openness policies align with CHIRAL’s agreements with funding sponsors and institutional policies. Any concerns should be discussed with the director.
 

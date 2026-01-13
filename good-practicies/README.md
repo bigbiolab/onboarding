@@ -4,7 +4,7 @@ Table of Content
 - [Reproducible Research](#reproducible-research)
   - [Reproducibility from Bench to Code: *B2C*](#reproducibility-from-bench-to-code-b2c)
 - [Project Management](#project-management)
-  - [Reproducing the Data Analysis with `renv`](#reproducing-the-data-analysis-with-renv)
+  - [Setting Up R Environment with `pak`](#setting-up-r-environment-with-pak)
   - [Work in Self-Contained Projects](#work-in-self-contained-projects)
   - [Avoid the `setw()` Nightmare](#avoid-the-setw-nightmare)
 - [Coding Practices](#coding-practices)
@@ -43,47 +43,267 @@ This TOC can help users navigate through the sections of your README more easily
 
 # Project Management
 
-## Reproducing the Data Analysis with [`renv`](https://rstudio.github.io/renv/), a tool for reproducible enviroments
+## Setting Up R Environment with [`pak`](https://github.com/r-lib/pak)
 
-All our published project use `renv` to promote accessible, reproducible, and easier-to-share scientific analysis.
+All our bioinformatics projects use `pak` as the package manager for R. `pak` is a modern, fast, and user-friendly alternative to traditional package management tools, making it much easier to set up and maintain R environments for bioinformatics analysis.
 
-### Why Using `renv` is Important
+### Why We Use `pak` for Bioinformatics
 
-`renv` is crucial for several reasons:
+`pak` is the preferred package manager in our lab for several important reasons:
 
--   **Reproducibility**: Ensures that the analysis will work as expected, regardless of future changes to R packages. The `renv.lock` file captures the exact package versions used, allowing anyone to reproduce the environment precisely.
--   **Isolation**: Each project can have its own isolated R environment. This means you can use different versions of packages in different projects without conflicts.
--   **Collaboration**: You can use `renv` to recreate your exact environment, avoiding the common “it works on my machine” problem.
+-   **Speed**: `pak` is significantly faster than traditional methods, downloading and installing packages in parallel.
+-   **Simplicity**: Much easier to use than `renv` - no complex lock files or environment restoration steps.
+-   **Comprehensive Support**: Seamlessly installs packages from:
+    -   CRAN (standard R packages)
+    -   Bioconductor (bioinformatics-specific packages)
+    -   GitHub (development versions and custom packages)
+    -   Local files
+-   **Smart Dependency Resolution**: Automatically handles complex package dependencies common in bioinformatics workflows.
+-   **Better Error Messages**: Clear, actionable error messages that help you fix problems quickly.
 
-### Setting Up the R Environment in RStudio Using `renv`
+### Installing `pak` for the First Time
 
-This will help you reproduce the R environment we used in this project.
+#### Step 1: Install `pak` in R
 
-1.  **Open the Project in RStudio**: Open RStudio and navigate to the R project directory where you saved this project. You can also do this by:
+Open RStudio or R console and run:
 
-    -   Opening the `.Rproj` file within the project directory, or
-    -   Using the `Session -> Set Working Directory -> Choose Directory...` option in RStudio to set your working directory to the project folder.
+``` r
+install.packages("pak")
+```
 
-2.  **Install `renv`** (if not already installed): Open R or RStudio and run the following command to install `renv`:
+That's it! `pak` is now ready to use.
 
-    ``` r
-    install.packages("renv")
-    ```
+#### Step 2: Verify Installation
 
-3.  **Restore the R Environment**:
+Check that `pak` is installed correctly:
 
-    -   The project directory should contain an `renv.lock` file, which `renv` uses to recreate the package environment. To restore the environment, open the R console in RStudio and run:
+``` r
+library(pak)
+pak::pak_sitrep()
+```
 
-        ``` r
-        renv::restore()
-        ```
+This will show you the status of your `pak` installation and configuration.
 
-    -   This command will:
+### Using `pak` for Bioinformatics Packages
 
-        -   Install all the R packages required for the project (say yes).
-        -   Install the exact versions of the packages as specified in the `renv.lock` file.
+#### Installing CRAN Packages
 
-    -   **Note**: This might take a few minutes, especially if the project uses many packages.
+For standard R packages from CRAN:
+
+``` r
+# Install a single package
+pak::pkg_install("tidyverse")
+
+# Install multiple packages at once
+pak::pkg_install(c("ggplot2", "dplyr", "readr", "data.table"))
+```
+
+#### Installing Bioconductor Packages
+
+For bioinformatics-specific packages from Bioconductor:
+
+``` r
+# Install Bioconductor packages (pak handles this automatically!)
+pak::pkg_install("DESeq2")
+pak::pkg_install("limma")
+
+# Install multiple Bioconductor packages
+pak::pkg_install(c(
+  "GenomicRanges",
+  "SummarizedExperiment",
+  "biomaRt"
+))
+```
+
+#### Installing Packages from GitHub
+
+For development versions or lab-specific packages:
+
+``` r
+# Install from GitHub repository
+pak::pkg_install("hadley/ggplot2")
+
+# Install a specific version or branch
+pak::pkg_install("user/package@v1.2.3")
+pak::pkg_install("user/package@dev-branch")
+```
+
+### Common Bioinformatics Setup Workflow
+
+Here's a typical workflow for setting up R for a bioinformatics project:
+
+#### 1. Create a New R Project
+
+-   In RStudio: `File -> New Project -> New Directory -> New Project`
+-   Name your project (e.g., "rna-seq-analysis")
+-   Choose a location in your working directory
+
+#### 2. Install Core Bioinformatics Packages
+
+Create a setup script (`setup.R`) in your project:
+
+``` r
+# Install pak if not already installed
+if (!requireNamespace("pak", quietly = TRUE)) {
+  install.packages("pak")
+}
+
+# Core data manipulation packages
+pak::pkg_install(c(
+  "tidyverse",      # Data manipulation and visualization
+  "data.table",     # Fast data processing
+  "readxl"          # Reading Excel files
+))
+
+# Bioconductor packages for genomics
+pak::pkg_install(c(
+  "DESeq2",              # Differential expression analysis
+  "edgeR",               # RNA-seq analysis
+  "limma",               # Linear models for microarray/RNA-seq
+  "GenomicRanges",       # Genomic interval operations
+  "rtracklayer",         # Import/export genomic data
+  "biomaRt",             # Access Ensembl database
+  "clusterProfiler",     # Functional enrichment analysis
+  "ComplexHeatmap"       # Advanced heatmaps
+))
+
+# Additional visualization packages
+pak::pkg_install(c(
+  "pheatmap",       # Pretty heatmaps
+  "ggrepel",        # Better text labels in plots
+  "patchwork"       # Combine multiple plots
+))
+```
+
+#### 3. Run Your Setup Script
+
+In the R console:
+
+``` r
+source("setup.R")
+```
+
+`pak` will install all packages in parallel, making the process much faster than traditional methods.
+
+### Updating Packages
+
+Keep your packages up to date:
+
+``` r
+# Update all packages
+pak::pkg_install("?all")
+
+# Update specific packages
+pak::pkg_install("tidyverse", upgrade = TRUE)
+```
+
+### Troubleshooting Common Issues
+
+#### Problem: Package installation fails
+
+**Solution**: Check the error message from `pak`. It usually provides clear guidance. Common issues:
+
+``` r
+# If you need system libraries, pak will tell you which ones
+# On Ubuntu/Debian, you might need:
+# sudo apt-get install libcurl4-openssl-dev libssl-dev libxml2-dev
+
+# On macOS with Homebrew:
+# brew install curl openssl libxml2
+```
+
+#### Problem: Package conflicts
+
+**Solution**: `pak` automatically resolves most conflicts. If issues persist:
+
+``` r
+# Remove the problematic package and reinstall
+remove.packages("package_name")
+pak::pkg_install("package_name")
+```
+
+#### Problem: Need a specific package version
+
+**Solution**: Use the `@` syntax:
+
+``` r
+# Install a specific version
+pak::pkg_install("package_name@1.2.3")
+```
+
+### Documenting Your Environment
+
+While `pak` doesn't use lock files like `renv`, it's still important to document your environment:
+
+#### Create a `packages.R` file in your project:
+
+``` r
+# packages.R - List of required packages for this project
+# Run this file to install all dependencies
+
+required_packages <- c(
+  # Data manipulation
+  "tidyverse@2.0.0",
+  "data.table",
+
+  # Bioconductor packages
+  "Bioconductor/DESeq2@1.42.0",
+  "Bioconductor/clusterProfiler",
+
+  # Visualization
+  "ggplot2",
+  "ComplexHeatmap"
+)
+
+# Install all packages
+pak::pkg_install(required_packages)
+```
+
+This allows collaborators to quickly set up the same environment by running:
+
+``` r
+source("packages.R")
+```
+
+### Best Practices for Lab Members
+
+1.  **Start every new project with a fresh R session**: `Session -> Restart R`
+2.  **Document required packages** in a `packages.R` file at the start of your analysis
+3.  **Use specific version numbers** for critical packages in publications (e.g., `DESeq2@1.42.0`)
+4.  **Update packages regularly**, but test your code after updates
+5.  **Share your `packages.R` file** with collaborators via GitHub
+6.  **Keep pak updated**: Run `pak::pkg_install("pak")` monthly
+
+### Quick Reference Card
+
+``` r
+# Install pak
+install.packages("pak")
+
+# Install CRAN package
+pak::pkg_install("package_name")
+
+# Install Bioconductor package
+pak::pkg_install("Bioconductor/package_name")
+
+# Install from GitHub
+pak::pkg_install("username/repo")
+
+# Install multiple packages
+pak::pkg_install(c("pkg1", "pkg2", "Bioconductor/pkg3"))
+
+# Update all packages
+pak::pkg_install("?all")
+
+# Check pak status
+pak::pak_sitrep()
+```
+
+### Additional Resources
+
+-   [pak GitHub Repository](https://github.com/r-lib/pak)
+-   [pak Documentation](https://pak.r-lib.org/)
+-   [Bioconductor Installation Guide](https://bioconductor.org/install/)
 
 ## Work in self-contained projects
 
